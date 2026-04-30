@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> ProductCatalogue</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <style>
+ 
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <ul>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/supportcontact">Support</a></li>
+            <li><a href="/MeetTheMaker">Meet the Maker</a></li>
+            <li><a href="/FarmersOnBoarding">Farmers Onboarding</a></li>
+            <li><a href="/view_cart" style="font-weight:bold;">View Cart</a></li>
+        </ul>
+    </div>
+
+    <h1 style="text-align:center;">Fresh From The Farm</h1>
+    <div class="fade-out-message">
+        {% if username %}
+        <h2 style="font-size: 1.5rem; opacity: 0.9;">Welcome back, {{ username }}!</h2>
+        {% else %}
+        <h2 style="font-size: 1.5rem; opacity: 0.9;">Welcome to GKH</h2>
+        {% endif %}
+    </div>
+    <div class="catalogue-container">
+        <!-- THIS PART IS REPEATED FOR EACH PRODUCT -->
+        <div class="product-card">
+            <img src="/static/uploads/image_name.jpg" alt="Product">
+            <h3>Product Name</h3>
+            <p class="description">Freshly picked organic product...</p>
+            <p class="price">&pound;12.00</p>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+        
+    </div>
+
+</body>
+</html>

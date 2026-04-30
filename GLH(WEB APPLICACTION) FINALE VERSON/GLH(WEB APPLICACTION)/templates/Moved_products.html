@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Farmer</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {% for move in movements %}
+        <tr>
+            <td>{{ move.farm_name }}</td>
+            <td>{{ move.product_name }}</td>
+            <td>{{ move.quantity }}</td>
+            <td>{{ move.status }}</td>
+            <td>
+                {% if move.status == 'pending' %}
+                <form action="{{ url_for('receive_goods', movement_id=move.movement_id) }}" method="POST">
+                    <button type="submit">Accept into Warehouse</button>
+                </form>
+                {% else %}
+                ✅ Received
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<html>
+<head>
+    <title>The Greenfield Local Hub </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+</head>
+<body>
+    <div class="nav-bar">
+        <ul>
+            <li>
+                <img src="{{ url_for('static', filename='uploads/logo.jpg') }}" alt="GLH Logo" style="height: 50px;">
+            </li>
+            {% if username %}
+            <li> {{ username }}</li>
+            {% else %}
+            <li><a href="/login">Login</a></li>
+            {% endif %}
+            <li><a href="/about">About</a></li>
+            <li><a href="/supportcontact">Support</a></li>
+            <li><a href="/MeetTheMaker">Meet the Maker</a></li>
+            <li><a href="/FarmersOnBoarding">Farmers Onboarding</a></li>
+        </ul>
+    </div>
+    <section class="support-container">
+        <div class="support-header">
+            <h1>GLH Support Centre</h1>
+            <p>How can we help you grow our local food community today?</p>
+        </div>
+
+        <div class="support-grid">
+            <!-- Customer Support Section -->
+            <div class="support-card">
+                <h2>Customer Support</h2>
+                <ul>
+                    <li><strong>Order Help:</strong> Track your fresh food harvest box or recent purchases.</li>
+                    <li><strong>Collection Points:</strong> Find where and when to pick up your local goods.</li>
+                    <li><strong>Returns Policy:</strong> What to do if your produce is not at its best.</li>
+                    <li><strong>Loyalty Scheme:</strong> How to earn and spend your community reward points.</li>
+                </ul>
+            </div>
+
+            <!-- Producer Support Section -->
+            <div class="support-card">
+                <h2>Producer Support</h2>
+                <ul>
+                    <li><strong>Onboarding:</strong> Step by step guide to joining the Greenfield Hub.</li>
+                    <li><strong>Dashboard Help:</strong> Managing your stock levels and seasonal pricing.</li>
+                    <li><strong>Marketing Tools:</strong> Accessing GLH branding for your farm shop.</li>
+                    <li><strong>Payment Info:</strong> Schedules for when your sales reach your account.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Common Questions</h2>
+            <div class="faq-item">
+                <p><strong>How do I know where my food comes from?</strong></p>
+                <p>Every product on GLH has full traceability. You can click on any item to see the specific farm or maker profile.</p>
+            </div>
+            <div class="faq-item">
+                <p><strong>What are the benefits of buying local?</strong></p>
+                <p>Buying through GLH reduces food miles, supports the rural economy, and ensures farmers get a fair price for their work.</p>
+            </div>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="contact-section">
+            <h2>Send us a Message</h2>
+            <form action="/submit-support" method="POST" class="support-form">
+                <input type="text" name="name" placeholder="Your Full Name" required>
+                <input type="email" name="email" placeholder="Your Email Address" required>
+                <select name="user-type">
+                    <option value="customer">I am a Customer</option>
+                    <option value="producer">I am a Farmer / Producer</option>
+                </select>
+                <textarea name="message" placeholder="How can we help?" rows="5" required></textarea>
+                <button type="submit" class="cta-btn">Submit Request</button>
+            </form>
+        </div>
+
+        <!-- Direct Contact Info -->
+        <div class="direct-contact">
+            <p>Prefer to speak with us? Call the hub at <strong>01480 890 970</strong></p>
+            <p>Support Hours: Monday to Friday, 9am to 5pm</p>
+        </div>
+    </section>
+
+</body>
+</html>

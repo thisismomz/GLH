@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <meta charset="UTF-8">
+    <title>Farmer Onboarding</title>
+    <style>
+  .hero-image {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{{ url_for('static', filename='uploads/hero4.jpg') }}");
+  }
+
+    form {
+        color: black; /* Makes all standard text inside the form black */
+    }
+
+    label {
+        display: block; /* Puts labels on their own line for a cleaner look */
+        margin-top: 10px;
+        color: black;
+    }
+
+    input {
+        color: black; /* Makes the text the user types black */
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="hero-image">
+        <div class="hero-text">
+            <h1>Join our other farmers</h1>
+
+            <form action="/FarmersOnBoarding" method="post">
+                <label>Username:</label>
+                <input type="text" name="username" required>
+
+                <label>First Name:</label>
+                <input type="text" name="firstname" required>
+
+                <label>Second Name:</label>
+                <input type="text" name="secondname" required>
+
+                <label>Farm Name:</label>
+                <input type="text" name="farm_name" required>
+
+                <label>Phone Number:</label>
+<input type="number" 
+       name="phone_number" 
+       oninput="if(this.value.length > 11) this.value = this.value.slice(0, 11);" 
+       required>
+
+
+
+                <label>Email:</label>
+                <input type="email" name="email" required>
+
+                <label>Date of Birth:</label>
+                <input type="date" name="dob" required>
+
+                <label>Set Password:</label>
+                <input type="password" name="password" required>
+                <button><a href="/home">why am I here </a> </button>
+
+                <button type="submit">Sign Up</button>
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>

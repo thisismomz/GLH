@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Linking to your consolidated CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <title>Stock management | GLH Farmers Portal</title>
+</head>
+<body>
+
+    <!-- Live Inventory Section -->
+    <section class="inventory-section">
+        <div class="section-header">
+            <h2>Your Live Shop Listings</h2>
+            <a href="{{ url_for('famerAddProduct') }}" class="btn-small">+ Add Food</a>
+        </div>
+
+        <div class="food-list">
+            {% if foods %}
+            {% for food in foods %}
+            <div class="food-item">
+                <div class="food-info">
+                    <!-- If your filename is stored in 'food.image_filename' -->
+                    <img src="{{ url_for('static', filename='uploads/' + food.image_filename) }}"
+                         alt="{{ food.food_name }}" style="width:100px;">
+
+                    <span class="food-name">{{ food['food_name'] }}</span>
+                    <span class="food-qty">Stock: {{ food['quantity'] }}</span>
+                    <span class="food-price">&pound;{{ "%.2f"|format(food['price']) }}</span>
+
+                </div>
+                <!-- Link to the delete route we built -->
+                <a href="{{ url_for('delete_item', item_id=food['id']) }}"
+                   class="delete-btn"
+                   onclick="return confirm('Are you sure?')">Remove</a> <!-- here the farmer can delete items that they do not want to list on their site-->
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="empty-state">
+                <p>No products listed yet. Start selling today!</p>
+                <a href="{{ url_for('famerAddProduct') }}" class="btn-primary">Add Your First Product</a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</body>
+</html>
+

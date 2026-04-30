@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Farmer Certification</title>
+    <!-- Assuming your CSS is in static/style.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <style>
+  .hero-image {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{{ url_for('static', filename='uploads/hero4.jpg') }}");
+  }
+        form {
+            color: black; /* Makes all standard text inside the form black */
+        }
+
+        label {
+            display: block; /* Puts labels on their own line for a cleaner look */
+            margin-top: 10px;
+            color: black;
+        }
+
+        input {
+            color: black; /* Makes the text the user types black */
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-image">
+        <div class="hero-text">
+            <div class="container">
+                <h1>Upload Your Credentials</h1>
+                <p>Please provide your insurance and academic certificates to verify your farm.</p>
+
+                <!-- IMPORTANT: enctype is required for file uploads -->
+                <form action="{{ url_for('certifications') }}" method="POST" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label for="insurance">Insurance Certificate (PDF or Image):</label>
+                        <input type="file" name="insurance" id="insurance" accept=".pdf,.jpg,.jpeg,.png" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="academic">Specialised Academic Credentials:</label>
+                        <input type="file" name="academic" id="academic" accept=".pdf,.jpg,.jpeg,.png">
+                        <small>Optional: Certificates for organic farming, food safety, etc.</small>
+                    </div>
+
+                    <div class="actions">
+                        <button type="submit" class="btn-primary">Upload & Continue</button>
+                    </div>
+                </form>
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

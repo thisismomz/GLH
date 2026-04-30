@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <style>
+.hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{{ url_for('static', filename='uploads/hero5.jpg') }}");
+}
+    </style>
+</head>
+<body>
+    <div class="hero-image">
+        <div class="hero-text">
+            <div class="login-card">
+
+                {% if error %}
+                <div class="error">{{ error }}</div>
+                {% endif %}
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                    <div>{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+                
+                <form class="register-form" action="/register" method="post">
+                    <h2 style="color:black">Register</h2>
+                    <div class="input-group">
+                        <label for="username" style="color:black">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password" style="color:black">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="register-btn">Sign Up</button>
+              <a href="/login" style="color:black">Do you have an acount already </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

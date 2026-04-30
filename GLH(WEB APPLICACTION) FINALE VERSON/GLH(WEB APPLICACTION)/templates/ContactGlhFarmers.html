@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>The Greenfield Local Hub </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <!-- there are three parts of this site and this is o part one-->
+    <style>
+      .hero-image {
+          background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{{ url_for('static', filename='uploads/hero4.jpg') }}");
+      }
+    </style>
+</head>
+<body>
+    <div class="hero-image">
+        <div class="hero-text">
+            <div class="contact-section">
+                <h2>Contact GLH Support Staff</h2>
+                <p>Logged in as: <strong>{{ session['username'] }}</strong></p> <!-- Shows who is sending the message -->
+
+                <form action="/ContactGlhFarmers" method="POST" class="support-form">
+                    <!-- Hidden input tells your Python code this came from a Farmer -->
+                    <input type="hidden" name="user-type" value="producer">
+
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Contact Email" required>
+
+                    <!-- Maybe add a field for Farm Name so staff know which farm is calling -->
+                    <input type="text" name="farm_name" placeholder="Farm Name (Optional)">
+
+                    <textarea name="message" placeholder="Describe the issue with your dashboard or stock..." rows="5" required></textarea>
+
+                    <button type="submit" class="cta-btn">Send Message to Staff</button>
+                    <button type="button" onclick="window.location.href='/home';">
+                        Back to the dashboard
+                    </button>
+
+                </form>
+
+
+            </div>
+        </div>>
+</body>
+
+</html>

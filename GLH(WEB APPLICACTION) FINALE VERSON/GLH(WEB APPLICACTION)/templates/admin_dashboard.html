@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Linking to your consolidated CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <title>Admin Dashboards | GLH Portal</title>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">ADMIN DASHBOARD</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">My Profile ▼</a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('managefarmer') }}">Add New Product</a>
+                    <a href="{{ url_for('managefarmer') }}">Certifications</a>
+                    <a href="{{ url_for('Responsepage') }}">Verification</a>
+                    <a href="{{ url_for('OrdersFullfillments') }}">Payment Details</a>
+                </div>
+            </li>
+            <li><a href="{{ url_for('logout') }}" style="color: #ffcdd2;">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <!-- Using session.username so it shows the Admin's name -->
+            <h1>Welcome back, {{ session.username }}!</h1>
+            <p>Manage administrative operations and system inventory below.</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <a href="{{ url_for('managefarmer') }}" class="card">
+                <div class="card-icon"></div>
+                <h3>Manage Farmer</h3>
+                <p>Update or edit current listings.</p>
+            </a>
+
+            <!-- Fixed the space in 'Moved_products' -->
+            <a href="{{ url_for('Moved_products') }}" class="card">
+                <div class="card-icon"></div>
+                <h3>Goods in Warehouse</h3>
+                <p>View total stock levels across all categories.</p>
+            </a>
+
+            <a href="{{ url_for('Responsepage') }}" class="card">
+                <div class="card-icon"></div>
+                <h3>Response Page</h3>
+                <p>Transfer items to storage or GLH facilities.</p>
+            </a>
+
+            <a href="{{ url_for('OrdersFullfillments') }}" class="card">
+                <div class="card-icon"></div>
+                <h3>Order Fulfilment</h3>
+                <p>Pack today's customer orders.</p>
+            </a>
+
+            <a href="{{ url_for('links') }}" class="card">
+                <div class="card-icon"></div>
+                <h3>Quick Links</h3>
+                <p>Direct support for GLH farmers.</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Flash Messages (Errors/Success) -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>

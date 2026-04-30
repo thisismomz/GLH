@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='farmers.css') }}">
+    <title>Add Produce</title>
+</head>
+<body>
+    <h1 style="text-align:center">Farmer's Portal: Add Food</h1>
+    {% if farm_name %}
+    <h1>Welcome back, {{ farm_name }}!</h1>
+    <a href="/FarmersOnBoarding">Farmers Onboarding</a>
+    {% endif %}
+
+   
+<div class="form-container">
+    <h1>Add New Product</h1>
+    
+    <form action="{{ url_for('famerAddProduct') }}" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Food Name:</label>
+            <input type="text" name="food_name" required>
+        </div>
+        <div class="form-group">
+            <label>stock count:</label>
+            <input type="text" name="quantity"  required>
+        </div>
+            <div class="form-group">
+                <label>Price per unit (£):</label>
+                <input type="number" step="0.01" name="price" required>
+            </div>
+
+            <div class="form-group">
+                <label>Product Description:</label>
+                <textarea name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Product Image:</label>
+                <input type="file" name="food_image" accept="image/*" required>
+            </div>
+
+            <button type="submit" class="btn-submit">List Food for Sale</button>
+    </form>
+    
+    <a href="/StockManagement" class="link-secondary">← Back to Inventory</a>
+</div>
+
+
+    <a href="/StockManagement">View My Inventory</a>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Onboarding | Marketplace</title>
+    <style>
+    </style>
+</head>
+<body>
+            <h3> Business Details</h3>
+            <div class="form-group">
+                <label>Farm Name</label>
+                <input type="text" name="farm_name" placeholder="Official Business Name" required>
+            </div>
+            <div class="form-group">
+                <label>Postcode</label>
+                <div class="postcode-box">
+                    <input type="text" name="postcode" id="postcode" placeholder="SW1A 1AA" required>
+                    <button type="button" class="btn-lookup" onclick="lookup()">Lookup</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label>City/Town</label>
+                    <input type="text" name="city" id="city" readonly style="background: #f9f9f9;">
+                </div>
+                <div class="form-group">
+                    <label>County</label>
+                    <input type="text" name="county" id="county" readonly style="background: #f9f9f9;">
+                </div>
+            </div>
+    <!-- Simple script to call your Python API for Postcode lookup -->
+    <script>function lookup() {
+        const pc = document.getElementById('postcode').value;
+        fetch('/api/lookup/' + pc)
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success') {
+                    document.getElementById('city').value = data.city;
+                    document.getElementById('county').value = data.county;
+                } else {
+                    alert('Postcode not found');
+                }
+            });
+    }</script>
+
+</body>
+</html>

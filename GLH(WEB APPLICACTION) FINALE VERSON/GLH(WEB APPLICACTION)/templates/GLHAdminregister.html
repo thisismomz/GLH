@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Admin Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+</head>
+<body class="login-page">
+    <div class="login-card">
+        <h1> Admin Portal</h1>
+
+        {% if error %}
+        <div class="error" style="color: red; margin-bottom: 10px;">{{ error }}</div>
+        {% endif %}
+
+        <form action="{{ url_for('GLHAdminregister') }}" method="post">
+            <div class="form-group">
+                <label>Admin Username</label>
+                {% if error %}
+                <div class="error">{{ error }}</div>
+                {% endif %}
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                    <div>{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+                <input type="text" name="username" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <!-- ADD THIS BOX HERE -->
+            <div class="form-group">
+                <label>Master Security Code</label>
+                <input type="text" name="security_code" placeholder="Enter the secret code" required>
+            </div>
+
+            <button type="submit">Unlock Dashboard</button>
+        </form>
+
+    </div>
+</body>
+</html>

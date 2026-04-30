@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- 1. Ensure this filename matches your file in the /static folder -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <style>
+  .hero-image {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{{ url_for('static', filename='uploads/hero5.jpg') }}");
+  }
+    </style>
+</head>
+<div class="hero-image">
+    <div class="hero-text">
+        <!-- 2. The class "login-page" MUST be here for the CSS to work -->
+        <body class="login-page">
+
+            <div class="login-card">
+                <h1>Please Login</h1>
+
+                {% if error %}
+                <div class="error">{{ error }}</div>
+                {% endif %}
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                    <div>{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <form action="/login" method="post">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" placeholder="Enter your username" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="••••••••" required />
+                    </div>
+
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+    </div>
+</div>
+
+    </body>
+</html>

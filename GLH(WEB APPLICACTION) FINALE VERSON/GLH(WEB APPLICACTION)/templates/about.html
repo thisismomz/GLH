@@ -1,0 +1,115 @@
+<html>
+<head>
+    <title>The Greenfield Local Hub </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <!-- there are three parts of this site and this is o part one-->
+    <style>
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{{ url_for('static', filename='uploads/hero4.jpg') }}");
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center; /* Horizontal centering */
+            align-items: center; /* Vertical centering */
+            padding: 20px;
+        }
+
+        .main-logo {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%; /* Optional: Makes the logo circular if it's square */
+            object-fit: cover; /* Ensures the logo doesn't look stretched */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <ul>
+            {% if username %}
+            <li> {{ username }}</li>
+            {% else %}
+            <li><a href="/login">Login</a></li>
+            {% endif %}
+            <li><a href="/home">Home</a></li>
+            <li><a href="/supportcontact">Support</a></li>
+            <li><a href="/MeetTheMaker">Meet the Maker</a></li>
+        </ul>
+    </div>
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='uploads/logo.jpg') }}" alt="GLH Logo" class="main-logo">
+    </div>
+
+    <section class="about-container">
+
+        <div class="about-header">
+            <h1>About Greenfield Local Hub</h1>
+            <p class="tagline">The United Kingdom number one local food website for sustainable communities.</p>
+        </div>
+
+        <div class="about-content">
+            <div class="info-block">
+                <h2>Our Identity and Mission</h2>
+                <p>
+                    To demonstrate our long term commitment to the local food industry, Greenfield Local Hub operates as a Community Interest Company.
+                    We help people find and buy good, safe, and accountable food from local sources. In the process, we encourage more food production
+                    to help build healthier, inclusive, and sustainable food communities.
+                </p>
+            </div>
+
+            <div class="info-block">
+                <h2>The Need for Change</h2>
+                <p>
+                    Greenfield Local Hub is committed to reversing the anti-social trend of the national food industry.
+                    There is a growing mass production of food and control of the market by big business.
+                    This results in farmers receiving an average of only nine pence in every one pound spent in supermarkets.
+                </p>
+                <p>
+                    Our mission is to reconnect consumers with their local producers. We do this directly or through local retailers.
+                    This gives farmers a better deal and provides consumers with fresher, cheaper, and more accountable food.
+                </p>
+            </div>
+
+            <div class="info-block">
+                <h2>Impact on Our Community</h2>
+                <p>Today's mass food industry causes several social issues:</p>
+                <ul>
+                    <li>Small farms go out of business frequently.</li>
+                    <li>Small rural shops and post offices close down.</li>
+                    <li>Access to fresh food decreases for many families.</li>
+                    <li>Food is produced for shelf life instead of natural flavour.</li>
+                    <li>Animals are moved across excessive distances.</li>
+                    <li>Labels often hide too many additives in our daily food.</li>
+                    <li>Retailer margins increase while farmers struggle to survive.</li>
+                </ul>
+            </div>
+
+            <div class="info-block">
+                <h2>How We Benefit You</h2>
+                <ul>
+                    <li><strong>The Database:</strong> We provide a definitive list of producers who want to sell direct.</li>
+                    <li><strong>Map Technology:</strong> We promote these producers on post code specific maps.</li>
+                    <li><strong>Digital Marketplace:</strong> Our online market place allows producers to sell local food through e-commerce.</li>
+                    <li><strong>Price Control:</strong> We help producers team up with local shops to offer food cheaper than the supermarket.</li>
+                    <li><strong>Education:</strong> We help schools get food growing and cooking back into the core of their teaching.</li>
+                </ul>
+            </div>
+
+            <div class="info-block">
+                <h2>Our Promise to Consumers</h2>
+                <p>
+                    We offer free access to our website to find local producers of food. You can also access recipes, blogs, and forums.
+                    We provide a regular emailed newsletter based on your specific post code for free.
+                </p>
+            </div>
+
+            <div class="volunteer-section" style="background-color: #2e7d32; color: white; padding: 20px; text-align: center;">
+                <h3>Join the Movement</h3>
+                <p>If you would like to help us, you can volunteer to spread the word in your area.</p>
+                <p><a href ='/supportcontact'>Please contact us at 01480 890 970</a ></p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>The Greenfield Local Hub </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <!-- there are three parts of this site and this is o part one-->
+    <style>
+      .hero-image {
+          background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{{ url_for('static', filename='uploads/hero4.jpg') }}");
+      }
+    </style>
+</head>
+<body>
+
+
+    <div class="nav-bar">
+        <ul>
+            <li>
+                <img src="{{ url_for('static', filename='uploads/logo.jpg') }}" alt="GLH Logo" style="height: 50px;">
+            </li>
+
+            {% if username %}
+            <li><strong>{{ username }}</strong></li>
+            <li><a href="/cart"> View Cart</a></li>
+            <!-- SHOW HISTORY FOR LOGGED IN USERS -->
+            <li><a href="/PurchaseHistory">Purchase History</a></li>
+            {% else %}
+            <li><a href="/register">Register</a></li>
+            <!-- ONLY SHOW FARMER ONBOARDING FOR LOGGED OUT USERS -->
+            <li><a href="/FarmersOnBoarding">Farmers Onboarding</a></li>
+            {% endif %}
+
+            <li><a href="/about">About</a></li>
+            <li><a href="/supportcontact">Support</a></li>
+            <li><a href="/MeetTheMaker">Meet the Maker</a></li>
+        </ul>
+    </div>
+    <div class="hero-image">
+        <div class="hero-text">
+            <!-- User Welcome Section -->
+            <div class="fade-out-message">
+                {% if username %}
+                <h2 style="font-size: 1.5rem; opacity: 0.9;">Welcome back,</h2>
+                {% else %}
+                <h2 style="font-size: 1.5rem; opacity: 0.9;">DISCOVER LOCAL GOODNESS </h2>
+                {% endif %}
+            </div>
+
+            <!-- Main Marketplace Pitch -->
+            <div class="GLH-branding">
+                <h1 style="font-size: 4rem; margin: 10px 0;">GLH Marketplace</h1>
+                <p style="font-size: 1.5rem; max-width: 700px; margin: 0 auto 30px;">
+                    Connecting you directly to the roots. Browse our local farmers'
+                    collective and buy fresh, seasonal produce in one simple shop.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="/ProductCatalog" class="cta-btn" style="color: white;">Browse the Market</a>
+
+                    <a href="/FarmersOnBoarding" class="cta-btn"style="color: white;">Sell Your Harvest</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</html>

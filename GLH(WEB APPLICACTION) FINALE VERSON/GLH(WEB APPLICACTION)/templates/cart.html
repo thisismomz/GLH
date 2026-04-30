@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <style>
+        
+        .cart-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            font-family: sans-serif;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="cart-container">
+        <h1>Your Shopping Cart</h1>
+
+        {% for p in products %}
+        <div class="cart-item">
+            <div style="display: flex; align-items: center;">
+                <img src="/static/uploads/{{ p.image_filename or 'default.jpg' }}" width="60" style="border-radius: 8px; margin-right: 15px;">
+                <div>
+                    <strong>{{ p.food_name }}</strong><br>
+                    <span>&pound;{{ "%.2f"|format(p.price) }}</span>
+                </div>
+            </div>
+
+            <div class="qty-controls">
+                <a href="/remove_one/{{ p.id }}">-</a>
+                <span>{{ counts[p.id] }}</span>
+                <a href="/add_to_cart/{{ p.id }}">+</a>
+            </div>
+
+            <div class="item-total">
+                &pound;{{ "%.2f"|format(p.price * counts[p.id]) }}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="cart-footer">
+            <h3>Grand Total: &pound;{{ "%.2f"|format(total_price) }}</h3>
+            <a href="/ProductCatalog" class="btn">Add More</a>
+            <a href="/checkout" class="btn buy">Purchase Now</a>
+        </div>
+    </div>
+</body>
+</html>

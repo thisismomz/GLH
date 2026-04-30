@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <title></title>
+    <style>
+    .hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{{ url_for('static', filename='uploads/hero4.jpg') }}");
+    }
+        form {
+            color: black; /* Makes all standard text inside the form black */
+        }
+
+        label {
+            display: block; /* Puts labels on their own line for a cleaner look */
+            margin-top: 10px;
+            color: black;
+        }
+
+        input {
+            color: black; /* Makes the text the user types black */
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        </style>
+</head>
+
+<body>
+    <div class="hero-image">
+        <div class="hero-text">
+            <h1>Business and Legal Verification</h1>
+
+            <!-- Make sure this matches your @app.route exactly -->
+            <form action="/payfarmers" method="post">
+
+
+                <label for="crn">Customer Reference Number (CRN):</label>
+                <input type="text" id="crn" name="customer_reference_number" required>
+
+                <p>Business type:</p>
+                <input type="radio" id="producer" name="business_type" value="producer" required>
+                <label for="producer">Producer</label><br>
+
+                <input type="radio" id="farmer" name="business_type" value="farmer">
+                <label for="farmer">Farmer</label><br>
+
+                <button type="submit" style="margin-top: 10px;">Continue</button>
+            </form>
+            </div>
+        </div>
+
+    <p><a href="/DataRequirementsGuide">Data Requirements Guide</a></p>
+</footer>
+
+</html>

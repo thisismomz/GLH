@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Purchase History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+    <style>
+        .history-box {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            font-family: sans-serif;
+        }
+
+        .order-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .order-header {
+            background: #f4f4f4;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .order-items {
+            padding: 15px;
+            background: white;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+            .item-row:last-child {
+                border-bottom: none;
+            }
+
+        .total-label {
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .date-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="history-box">
+        <h1>Your Purchase History</h1>
+
+        {% if history %}
+        {% for entry in history %}
+        <div class="order-card">
+            <div class="order-header">
+                <div>
+                    <strong>Order #{{ entry.order.id }}</strong><br>
+                    <span class="date-label">{{ entry.order.order_date }}</span>
+                </div>
+                <div class="total-label">
+                    Total: &pound;{{ "%.2f"|format(entry.order.total_price) }}
+                </div>
+            </div>
+
+            <div class="order-items">
+                {% for item in entry.items %}
+                <div class="item-row">
+                    <span>{{ item.food_name }} (x{{ item.quantity }})</span>
+                    <span>&pound;{{ "%.2f"|format(item.price * item.quantity) }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>You haven't made any purchases yet! <a href="/ProductCatalog">Start shopping</a>.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

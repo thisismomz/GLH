@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Admin Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='part1.css') }}">
+</head>
+<body class="login-page">
+    <div class="login-card">
+        <h1> Admin Portal</h1>
+
+        {% if error %}
+        <div class="error" style="color: red; margin-bottom: 10px;">{{ error }}</div>
+        {% endif %}
+
+        <form action="/AdminLogin" method="post">
+            <div class="form-group">
+                <label>Admin Username</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="form-group">
+                <label>Security Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit">Unlock Dashboard</button>
+        </form>
+    </div>
+</body>
+</html>
